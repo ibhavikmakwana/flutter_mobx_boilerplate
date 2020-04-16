@@ -1,15 +1,12 @@
+// This file has been generated using [https://app.quicktype.io/].
 // To parse this JSON data, do
 //
 //     final articles = articlesFromJson(jsonString);
 
 import 'dart:convert';
 
-Articles articlesFromJson(String str) => Articles.fromJson(json.decode(str));
-
-String articlesToJson(Articles data) => json.encode(data.toJson());
-
 class Articles {
-  List<Item> items;
+  List<ArticleItem> items;
   String basepath;
   String offset;
 
@@ -20,7 +17,7 @@ class Articles {
   });
 
   Articles copyWith({
-    List<Item> items,
+    List<ArticleItem> items,
     String basepath,
     String offset,
   }) =>
@@ -30,53 +27,61 @@ class Articles {
         offset: offset ?? this.offset,
       );
 
-  factory Articles.fromJson(Map<String, dynamic> json) => Articles(
-        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+  factory Articles.fromJson(String str) => Articles.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Articles.fromMap(Map<String, dynamic> json) => Articles(
+        items: List<ArticleItem>.from(json["items"].map((x) => ArticleItem.fromMap(x))),
         basepath: json["basepath"],
         offset: json["offset"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "items": List<dynamic>.from(items.map((x) => x.toJson())),
+  Map<String, dynamic> toMap() => {
+        "items": List<dynamic>.from(items.map((x) => x.toMap())),
         "basepath": basepath,
         "offset": offset,
       };
 }
 
-class Item {
+class ArticleItem {
   int id;
   String title;
   String url;
   int ns;
 
-  Item({
+  ArticleItem({
     this.id,
     this.title,
     this.url,
     this.ns,
   });
 
-  Item copyWith({
+  ArticleItem copyWith({
     int id,
     String title,
     String url,
     int ns,
   }) =>
-      Item(
+      ArticleItem(
         id: id ?? this.id,
         title: title ?? this.title,
         url: url ?? this.url,
         ns: ns ?? this.ns,
       );
 
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
+  factory ArticleItem.fromJson(String str) => ArticleItem.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ArticleItem.fromMap(Map<String, dynamic> json) => ArticleItem(
         id: json["id"],
         title: json["title"],
         url: json["url"],
         ns: json["ns"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,
         "url": url,

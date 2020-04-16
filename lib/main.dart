@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:fluttermobxboilerplate/values/base_colors.dart';
-import 'package:provider/provider.dart';
+import 'package:fluttermobxboilerplate/values/imports.dart';
 
 import 'modules/home/home_screen.dart';
 import 'store/theme/theme_store.dart';
@@ -21,7 +18,7 @@ class MyApp extends StatelessWidget {
     return Observer(
       name: 'theme_store_observer',
       builder: (BuildContext context) => MaterialApp(
-        title: 'Flutter MobX Boilerplate',
+        title: Strings.appName,
         theme: ThemeData(primarySwatch: BaseColors.colorBlue),
         darkTheme: ThemeData.dark(),
         themeMode: Provider.of<ThemeStore>(context).themeMode,
