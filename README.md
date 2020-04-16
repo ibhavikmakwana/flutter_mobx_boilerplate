@@ -1,6 +1,6 @@
 # fluttermobxboilerplate
 
-A new Flutter application.
+A Flutter Project contains a Boilerplate code with MobX and Provider as a State Managment.
 
 ## Getting Started
 
