@@ -8,7 +8,7 @@ void main() {
     () async {
       final articlesStore = ArticleStore();
       await articlesStore.getArticles();
-      expect(articlesStore.articles.basepath.isNotEmpty, true);
+      expect(articlesStore.articles.items.isNotEmpty, true);
     },
   );
 }
