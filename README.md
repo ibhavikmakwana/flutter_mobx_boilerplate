@@ -2,6 +2,8 @@
 
 A Flutter Project contains a Boilerplate code with MobX and Provider as a State Managment.
 
+[Read more about the project structure here.](https://github.com/ibhavikmakwana/flutter_mobx_boilerplate/wiki/Project-Packaging-structure)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
