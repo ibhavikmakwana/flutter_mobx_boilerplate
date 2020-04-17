@@ -1,6 +1,8 @@
 import 'package:fluttermobxboilerplate/store/articles/article_store.dart';
 import 'package:fluttermobxboilerplate/store/theme/theme_store.dart';
+import 'package:fluttermobxboilerplate/utility/preferences_service.dart';
 import 'package:fluttermobxboilerplate/values/imports.dart';
+import 'package:fluttermobxboilerplate/values/routes.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -9,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ThemeStore _themeStore;
+  PreferencesService _preferencesService;
   ArticleStore _articleStore;
 
   @override
@@ -21,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _themeStore ??= Provider.of<ThemeStore>(context);
+    _preferencesService ??= Provider.of<PreferencesService>(context);
   }
 
   @override
@@ -32,9 +36,20 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: Icon(Icons.lightbulb_outline),
             onPressed: () {
-              openBottomSheet(context, _themeStore);
+              _openBottomSheet(context, _themeStore);
             },
-          )
+          ),
+          IconButton(
+            icon: Icon(Icons.input),
+            onPressed: () async {
+              // TODO(Bhavik Makwana) show confirmation dialog.
+              await _preferencesService.clearPref();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                Routes.login,
+                (Route<dynamic> route) => false,
+              );
+            },
+          ),
         ],
       ),
       body: Center(
@@ -76,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void openBottomSheet(BuildContext context, ThemeStore _themeStore) {
+  void _openBottomSheet(BuildContext context, ThemeStore _themeStore) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {

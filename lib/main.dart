@@ -1,12 +1,20 @@
 import 'package:fluttermobxboilerplate/values/imports.dart';
 
-import 'modules/home/home_screen.dart';
+import 'route_generator.dart';
 import 'store/theme/theme_store.dart';
+import 'utility/preferences_service.dart';
 
 void main() {
   runApp(
-    Provider(
-      create: (BuildContext context) => ThemeStore(),
+    MultiProvider(
+      providers: [
+        Provider(
+          create: (BuildContext context) => ThemeStore(),
+        ),
+        Provider(
+          create: (BuildContext context) => PreferencesService(),
+        ),
+      ],
       child: MyApp(),
     ),
   );
@@ -22,7 +30,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primarySwatch: BaseColors.colorBlue),
         darkTheme: ThemeData.dark(),
         themeMode: Provider.of<ThemeStore>(context).themeMode,
-        home: HomeScreen(),
+        initialRoute: '/',
+        onGenerateRoute: RouteGenerator.generateRoute,
       ),
     );
   }
