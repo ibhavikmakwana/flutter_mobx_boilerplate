@@ -13,6 +13,10 @@ A Flutter Project contains a Boilerplate code with MobX and Provider as a State 
 4. Changing theme (Dark/Light/System)
 5. Log out.
 
+## TODO
+
+1. Offline first app with [Moor](https://pub.dev/packages/moor_flutter).
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
